@@ -1,0 +1,55 @@
+#include <math.h>
+#include <stdio.h>
+
+int mod(int a, int b) {
+    return (b + a % b) % b;
+}
+int max(int a, int b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+int min(int a, int b) {
+    if (a < b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+int sign(int a) {
+    if (a > 0) {
+        return 1;
+    } else if (a == 0) {
+        return 0;
+    } else if (a < 0) {
+        return -1;
+    }
+}
+int abs(int a) {
+    if (a < 0) {
+        return -a;
+    } else {
+        return a;
+    }
+}
+int main() {
+    int i0 = 18, j0 = -9, l0 = 5;
+    int i = i0, j = j0, l = l0, i_1 = i, j_1 = j, l_1 = l;
+    for (int k = 0; k <= 50; k++) {
+        i_1 = i;
+        j_1 = j;
+        l_1 = l;
+        i = mod((i_1*max(j_1, l_1)), 30) + mod((j_1*min(i_1, l_1)), 20) + k;
+        j =  min(i_1, max(j_1, min(l_1, max(i_1 - l_1, j_1 - l_1))));
+        l = sign(k-10)*abs(i_1-j_1+ l_1 - k);
+        if (((pow((i-10),2)+pow((j-10), 2))<=pow(10,2)) && (pow((i-10), 2) + pow((j-10),2) >= 25)){
+            printf("Попал на шаге %d, i = %d, j = %d, l = %d\n", k, i, j, l);
+            return 0;
+        }
+    }
+    
+    printf("Не попал, i = %d, j = %d, l = %d", i, j, l);
+    return 0;
+}
