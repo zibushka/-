@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <math.h>
+
+// Функция, данная в задании
+long double func ( long double x ) { 
+	return 0.6 * pow(3, x) - 2.3 * x - 3;
+}
+
+// Функция модуль
+long double my_abs( long double x) {
+	if ( x < 0 ) {
+		return -x;
+	}
+	return x;
+}
+
+int main() {
+
+    long double eps = 1.0l, a = 2.0l, b = 3.0l;
+    
+    // Вычисление машинного эпсилона 
+    while (1.0l + eps / 2.0l > 1.0l) { 
+    	eps /= 2.0l;
+    }
+    
+    eps *= 100;
+    
+    printf("Машинное эпсилон для типа double = %.16Le\n", eps);
+    
+    // Вычисление методом дихотомии (метода половинного деления)
+    while (my_abs(a - b) > eps) { 
+    	if (( func(a) * func((a + b) / 2.0l) ) > 0) {
+    		a = ( a + b ) / 2.0l;
+    	} else {
+	    	if ((func(b) * func((a + b) / 2.0l)) > 0) {
+	    		b = ( a + b ) / 2.0l;
+	    	} else {
+    			break;
+    		}
+    	}
+    }
+    
+    // Вывод ответа
+    printf("Приближенное значение корня, полученного при помощи метода дихотомии (метода половинного деления) равно: %Le\n", (a + b) / 2);
+}
