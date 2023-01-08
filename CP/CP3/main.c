@@ -23,7 +23,7 @@ int main()
         add = 1;
         iter = 1;
         func = ((1+pow(x, 2))/2)*atan(x)-(x/2);
-        ans = 1;
+        ans = 0;
         while (fabs(add) > eps && iter < 100) {
             add = (pow(-1, iter + 1)*(pow(x, 2*iter + 1)/(4*pow(iter, 2) - 1)));
             iter++;
