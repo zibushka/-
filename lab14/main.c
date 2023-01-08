@@ -1,11 +1,7 @@
 
 #include <stdio.h>
 
-void delay(int ms) // аргумент- требуемое время задержки в миллисекундах
-{
-    int c = clock() + ms;
-    while (clock() < c);
-}
+
 int main()
 {
     int n = 0;
